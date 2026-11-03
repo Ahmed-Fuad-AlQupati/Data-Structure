@@ -2,6 +2,7 @@ package datastructure;
 
 import arrays.Arrays;
 import javax.swing.JOptionPane;
+import stack.Stack;
 
 
 
@@ -9,43 +10,48 @@ public class Main {
 
     public static void main(String[] args) {
     
-        Arrays array = new Arrays();
-        String ch;
+        Stack stack = new Stack();
+        String ch;        
         boolean run = true;
         while(run){
             ch = JOptionPane.showInputDialog("""
-                                             [1] Insert into Array.
-                                             [2] Remove from Array.
-                                             [3] Print Array's Data.
-                                             [4] Clear Data in Array.
-                                             [5] Ascending Sort Array's Data.
-                                             [6] Descending Sort Array's Data.
+                                             [1] Push.
+                                             [2] pop.
+                                             [3] Print Stack's Data.
+                                             [4] Maximum Value.
+                                             [5] Minimum Value.
+                                             [6] Sum all Values.
+                                             [7] Find Value.
                                              [E] Exit.""");
         
         
             switch(ch){
                 case "1":
-                    array.insert();
+                    stack.push();
                     break;
                     
                 case "2":
-                    array.remove();
+                    stack.pop();
                     break;
                     
                 case "3":
-                    array.print();
+                    stack.print();
                     break;
                     
                 case "4":
-                    array.clear();
+                    stack.max();
                     break;
                     
                 case "5":
-                    array.sort(true);
+                    stack.min();
                     break;
                     
                 case "6":
-                    array.sort(false);
+                    stack.sum();
+                    break;
+                    
+                case "7":
+                    stack.find();
                     break;
                     
                 case "E":
