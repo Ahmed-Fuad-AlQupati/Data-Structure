@@ -2,13 +2,20 @@ package stack;
 
 import javax.swing.JOptionPane;
 
-public class Stack {
+public class Stack{
     
     private int size, data[], top = -1;
-    
+    private String stringData[];
     public Stack() {
         this.size = Integer.parseInt(JOptionPane.showInputDialog("Enter Stack Size : "));
         this.data = new int[size];
+        this.stringData = new String[size];
+    }
+    
+    public Stack(int size) {
+        this.size = size;
+        this.data = new int[size];
+        this.stringData = new String[size];
     }
     
     public boolean isEmpty(){
@@ -36,6 +43,15 @@ public class Stack {
             JOptionPane.showMessageDialog(null, "Can't Push .. Stack is Full!!");            
     }
     
+    public void stringPush(String value){
+        if(!isFull()){            
+            stringData[++top] = value;
+            //JOptionPane.showMessageDialog(null, "Value " + value + " Pushed into Stack.");
+        }
+//        else
+//            JOptionPane.showMessageDialog(null, "Can't Push .. Stack is Full!!");            
+    }
+    
     public void pop(){
         if(!isEmpty()){
             JOptionPane.showMessageDialog(null, "Value " + data[top--] + " Popped.");                        
@@ -44,12 +60,34 @@ public class Stack {
             JOptionPane.showMessageDialog(null, "Can't Pop .. Stack is Empty!!");
     }
     
-    public void print(){
+    public String stringPop(){
+        if(!isEmpty()){
+            return stringData[top--];
+        }
+        else
+            return null;
+    }
+    
+    public void printData(){
         if(!isEmpty()){
             int temp = top;
             String s = "";
             while(!isEmpty())
                 s += data[top--] + "\n";
+
+            JOptionPane.showMessageDialog(null, s);
+            top = temp;
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Can't Print .. Stack is Empty!!");
+    }
+    
+    public void printStringData(){
+        if(!isEmpty()){
+            int temp = top;
+            String s = "";
+            while(!isEmpty())
+                s += stringPop() + "\n";
 
             JOptionPane.showMessageDialog(null, s);
             top = temp;
@@ -124,7 +162,20 @@ public class Stack {
                 
         }
         else
-            JOptionPane.showMessageDialog(null, "Can't Find .. Stack is Empty!!");
-            
+            JOptionPane.showMessageDialog(null, "Can't Find .. Stack is Empty!!");       
+    }
+    
+    public String getStringDataAsString(){
+        if(!isEmpty()){
+            int temp = top;
+            String s = "";
+            while(!isEmpty())
+                s += stringPop() + " ";
+
+            top = temp;
+            return s;
+        }
+        else
+            return null;
     }
 }

@@ -2,7 +2,7 @@ package datastructure;
 
 import arrays.Arrays;
 import javax.swing.JOptionPane;
-import stack.Stack;
+import stack.*;
 
 
 
@@ -10,7 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
     
-        Stack stack = new Stack();
+        Stack stack;
+        try{
+             stack = new Stack();
+        
+        }catch(Exception ex){
+             stack = new Stack(5);
+        }
+        
         String ch;        
         boolean run = true;
         while(run){
@@ -22,6 +29,8 @@ public class Main {
                                              [5] Minimum Value.
                                              [6] Sum all Values.
                                              [7] Find Value.
+                                             [8] Convert Infix to Postfix.
+                                             [9] Solve Postfix.
                                              [E] Exit.""");
         
         
@@ -35,7 +44,7 @@ public class Main {
                     break;
                     
                 case "3":
-                    stack.print();
+                    stack.printData();
                     break;
                     
                 case "4":
@@ -52,6 +61,20 @@ public class Main {
                     
                 case "7":
                     stack.find();
+                    break;
+                    
+                case "8":
+                    String infix = JOptionPane.showInputDialog("Enter Infix Syntax:"); 
+                    String t = Postfix.infix2PostfixByTwoStacks( infix );
+                    JOptionPane.showMessageDialog(null, "Two Stacks, => " + t);
+                    t = Postfix.infix2PostfixByOneStack(infix );
+                    JOptionPane.showMessageDialog(null, "One Stack, => " + t);
+                    break;
+                    
+                case "9":
+                    String postfix = JOptionPane.showInputDialog("Enter Postfix Syntax:"); 
+                    String s = Postfix.solvePostfixSyntax(postfix);
+                    JOptionPane.showMessageDialog(null, s);
                     break;
                     
                 case "E":
